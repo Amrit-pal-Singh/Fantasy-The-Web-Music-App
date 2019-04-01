@@ -1,0 +1,39 @@
+{% extends 'music/base.html' %}
+{% block title %}Songs{% endblock %}
+{% block songs_active %}active{% endblock %}
+{% block body %}
+    <div class="container">
+
+    <div class="table_inside">
+
+    <table class="table table-borderless table-condensed">
+        <thead>
+            <th>Audio</th>
+            <th>Title</th>
+            <th>Album_name</th>
+            <th>Artist</th>
+        </thead>
+        <tbody>
+            {% for album in albums %}
+                {% for song in album.songs_set.all %}
+                    <tr class="no-border">
+                        <td>
+                            <a href="{{ song.audio.url }}" target="_blank">
+                                <button type="button" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-play">Play</span>
+                                </button>
+                            </a>
+                        </td>
+                        <td>{{ song.song_name }}</td>
+                        <td>{{ song.song_album }}</td>
+                        <td>{{ song.artist }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+
+        </tbody>
+    </table>
+    </div>
+</div>
+
+{% endblock %}

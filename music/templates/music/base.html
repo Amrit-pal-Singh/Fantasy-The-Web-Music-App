@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'music/style_footer.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Gloria+Hallelujah|Patrick+Hand" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body background="../../../media/images/dark%20grey%20backdround.jpg">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#id_of_things">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="{% url 'MyMusic:index'%}" class="navbar-brand" style="font-family: 'Gloria Hallelujah'">Fantasy</a>
+            </div>
+            <div class="collapse navbar-collapse" id="id_of_things">
+                <ul class="nav navbar-nav">
+                    <li class="{% block albums_active %}{% endblock %}">
+                        <a href="{% url 'MyMusic:index' %}">
+                            <span class="glyphicon glyphicon-cd"  >
+                            <p style="display: inline;font-family: 'Patrick Hand'">Albums</p></span>
+                        </a>
+                    </li>
+                    <li class="{% block songs_active %}{% endblock %}">
+                        <a href="{% url 'MyMusic:songs' %}">
+                            <span class="glyphicon glyphicon-music">
+                            <p style="display: inline;font-family: 'Patrick Hand'">Songs</p></span></span>
+                        </a>
+                    </li>
+                </ul>
+                    <form action="{% url 'MyMusic:index' %}" method="get" role="search" class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" name="search_element" value="{{ request.GET.search_element }}" class="form-control">
+                        </div>
+                        <button class="btn btn-default" type="submit">Search</button>
+                    </form>
+                <ul class="nav navbar-right navbar-nav">
+
+                    <li class="{% block add_albums %}{% endblock %}">
+                        <a href="{% url 'MyMusic:add-albums'%}">
+                            <span class="glyphicon glyphicon-plus"></span>&nbsp; Add Albums
+                        </a>
+                    </li>
+                    <li class="{% block profile_active %}{% endblock %}">
+                        <a href="{% url 'MyMusic:profile' %}">
+                            <span class="glyphicon glyphicon-profile">Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'MyMusic:logout' %}">
+                            <span class="glyphicon glyphicon-out">Logout</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body %}
+
+    {% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends 'music/base.html' %}
+{% block profile_active %}active{% endblock %}
+{% block title %}My Profile{% endblock %}
+{% block body %}
+    {% include 'music/profile_name_and_id.html' %}
+    <div class="container">
+        <div class="table_inside">
+
+        <table class="table">
+            <thead class="no-border">
+                <tr>
+                    <th>Audio</th>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>Album</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for song in songs %}
+                    <tr>
+                        <td>
+                            <a href="{{ song.audio.url }}" target="_blank" class="btn btn-default">
+                                <span class="glyphicon glyphicon-play">Play</span>
+                            </a>
+                        </td>
+                        <td>{{ song.song_name }}</td>
+                        <td>{{ song.artist }}</td>
+                        <td>{{ song.song_album }}</td>
+                        <td><a href="{% url 'MyMusic:delete_song' song.id %}" target="_blank" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash ">Delete</span>
+                            </a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'music/base.html' %}
+{% block title %}Login{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="panel panel-default col-md-offset-3 col-md-6" >
+            <div class="panel-body">
+                <form action="" class="form-horizontal" method="post" role="form">
+                    {% csrf_token %}
+                    <h2 style="text-align: center">Login</h2>
+                    <br>
+                    <br>
+                    {% if error_message %}
+                        <div class="alert alert-danger">
+                            <p><strong>{{ error_message }}</strong></p>
+                        </div>
+                    {% endif %}
+
+                    <form action="" class="form-horizontal" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="user_name" class="control-label col-sm-2">Username</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="user_name" name="username" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass_word" class="control-label col-sm-2">Password</label>
+                            <div class="col-sm-4">
+                                <input type="password" id="pass_word" name="password" >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-offset-2" style="padding-left: 12px">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    <div class="panel-footer">
+                        If you don't have a account, <a href="{% url 'MyMusic:register' %}">Register</a> here
+                    </div>
+                    </form>
+                </form>
+            </div>
+        </div>
+        <div class="panel panel-default col-md-offset-3 col-md-6">
+            <div class="panel-body">
+                <h2 style="text-align: center">What is Fantasy</h2>
+                <p style="margin-left: 40px">
+                    This is a web app built using <strong>Python Django Html and Css.</strong><br>
+                    You can <strong>create albums and save songs on cloud.</strong>. <br>
+                    You can <strong>update and add songs</strong> to your created albums. <br>
+                    Enjoy your journey with <strong>Fantasy</strong>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{%extends 'music/base.html'%}
+{% block title %}Fantasy{% endblock %}
+{% block albums_active %}active{% endblock %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            {% for album in all_albums %}
+            <div class="col-md-3">
+                <div class="thumbnail" style="height: 350px ; width: 350px;overflow: auto">
+
+                    <a href="{% url 'MyMusic:details' album.id %}" >
+                        <img src="{{ album.album_logo.url }}" alt="" style="height: 200px; width: auto">
+                    </a>
+                    <div class="caption">
+                          <h2>{{ album.album_name }}</h2>
+                        <div style="display: inline">
+                            <h4>{{ album.artist }}</h4>
+
+                        </div>
+                        <h6 style="text-align: right">created by - {{ album.user }}</h6>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% if songs %}
+
+    <div class="table_inside">
+        <div class="container">
+
+            <table class="table table-borderless table-condensed">
+                <thead>
+                <th>Audio</th>
+                <th>Title</th>
+                    <th>Artist</th>
+
+                    <th>Album_name</th>
+                </thead>
+                <tbody>
+                    {% for song in songs %}
+                        <tr class="no-border">
+                            <td><a href="{{ song.audio.url }}" class="btn btn-primary" target="_blank">
+                                <span class="glyphicon glyphicon-play">Play</span>
+                                </a>
+                            </td>
+                            <td>{{ song.song_name }}</td>
+                            <td>{{ song.artist }}</td>
+                            <td>{{ song.song_album }}</td>
+
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+    {% endif %}
+    {% if error_message %}
+        <h1 style="color: white">{{ error_message }}</h1>
+    {% endif %}
+
+    </div>
+{% endblock %}

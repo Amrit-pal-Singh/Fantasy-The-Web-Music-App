@@ -1,0 +1,39 @@
+{%extends 'music/base.html'%}
+{% block add_albums %}active{% endblock %}
+{% block title %}Add Albums{% endblock %}
+{% block body %}
+    {% if user.is_authenticated %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h2>Add Albums</h2>
+
+                    {% for field in form %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2  " >
+                                <span class="text-danger small">{{ field.errors }}</span>
+                            </div>
+                            <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+                            <div class="col-sm-10 ">{{ field }}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                    <div class="col-sm-offset-2">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+    {% else %}
+        <div class="alert alert-danger">
+            <strong>GO LOGIN FIRST
+                <a href="{% url 'MyMusic:login' %}">Click_Here</a></strong>
+        </div>
+    {% endif %}
+{% endblock %}

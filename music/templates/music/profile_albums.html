@@ -1,0 +1,26 @@
+{% extends 'music/base.html' %}
+{% block profile_active %}active{% endblock %}
+{% block title %}My Profile{% endblock %}
+{% block body %}
+
+    {% include 'music/profile_name_and_id.html' %}
+    {% for album in all_albums %}
+            <div class="col-md-3">
+                <div class="thumbnail" style="height: 350px ; width: 350px;overflow: auto">
+                    <a href="{% url 'MyMusic:details' album.id %}" >
+                        <img src="{{ album.album_logo.url }}" alt="" style="height: 200px; width: auto">
+                    </a>
+
+                    <div class="caption">
+                          <h2>{{ album.album_name }}</h2>
+
+                        <div style="display: inline">
+                            <h4>{{ album.artist }}</h4>
+                        </div>
+
+                        <h6 style="text-align: right">created by - {{ album.user }}</h6>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+{% endblock %}

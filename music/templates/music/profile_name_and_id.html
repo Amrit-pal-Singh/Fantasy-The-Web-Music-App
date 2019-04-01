@@ -1,0 +1,18 @@
+{% block profile_active %}active{% endblock %}
+
+<div class="container-fluid">
+    <div class="panel panel-default col-md-offset-3 col-md-6">
+        <div class="panel-body">
+            <img src="../../../media/images/Compose-Music-by-your-Thoughts.jpg" alt="" style="height: 230px;width: 333px;margin-right: auto;margin-left: auto; display: block">
+            <h2 style="text-align: center">{{ username }}</h2>
+            <h4>Email - {{ email }}</h4>
+            <div style="margin-left: 30px;">
+            <a href="{% url 'MyMusic:profile_albums' %}" class="btn btn-default">My Albums</a>
+            <a href="{% url 'MyMusic:profile_songs' %}" class="btn btn-default">My Songs</a>
+        </div>
+        </div>
+    </div>
+{% block profile %}
+{% endblock %}
+</div>
+

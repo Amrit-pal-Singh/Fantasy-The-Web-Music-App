@@ -1,0 +1,55 @@
+{%extends 'music/base.html'%}
+{% block title %}Album Detail{% endblock %}
+{% block albums_active %}active{% endblock %}
+{% block body %}
+
+ <div class="container">
+     {% if user == albums.user %}
+        <a href="{% url 'MyMusic:update-albums' albums.id%}" class="btn btn-primary">Update Album</a>
+        <a href="{% url 'MyMusic:add-songs' albums.id %}" class="btn btn-primary" style="display: inline">Add Songs</a>
+
+     {% endif %}
+     <br>
+    <div class="thumbnail col-md-offset-3 col-md-6 ">
+        <img src="{{ albums.album_logo.url }}" alt="" style="height:250px; width: auto ;display: block; margin-right: auto; margin-left: auto">
+        <div class="caption">
+            <h2 style="text-align: center" >{{ albums.album_name }}</h2>
+            <h3 style="margin-left: 30px">genre - {{ albums.genre }}</h3>
+            <h6 style="text-align: right">created by - {{ albums.user }}</h6>
+        </div>
+    </div>
+
+    <div class="table_inside">
+
+    <table class="table table-borderless table-condensed">
+        <thead>
+            <th>Title</th>
+            <th>audio</th>
+        </thead>
+        <tbody>
+            {% for song in albums.songs_set.all %}
+                <tr class="no-border">
+                    <td>
+                        <h4>{{ song.song_name }}</h4>
+                    </td>
+
+                    <td>
+                        <a href="{{ song.audio.url }}" target="_blank">
+                            <button type="button" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-play"></span>Play
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+
+            </tr>
+        </tbody>
+
+
+    </table>
+    </div>
+ </div>
+{% endblock %}
