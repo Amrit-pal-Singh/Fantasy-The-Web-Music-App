@@ -12,6 +12,9 @@ class Albums(models.Model):
     def __str__(self):
         return self.album_name
 
+# Now every album creation give it a id number which is unique
+# ForeignKey means the id meantioned above
+# models.CASCADE When you delete the album delete the songs too.
 
 class Songs(models.Model):
     song_name = models.CharField(max_length=100)

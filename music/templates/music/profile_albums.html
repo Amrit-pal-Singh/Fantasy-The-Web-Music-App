@@ -1,12 +1,8 @@
-{% extends 'music/base.html' %}
-{% block profile_active %}active{% endblock %}
-{% block title %}My Profile{% endblock %}
 {% block body %}
-
     {% include 'music/profile_name_and_id.html' %}
     {% for album in all_albums %}
-            <div class="col-md-3">
-                <div class="thumbnail" style="height: 350px ; width: 350px;overflow: auto">
+            <div class="col-md-3" style="color: white">
+                <div class="thumbnail" style="height: 350px ; width: 350px;overflow: auto; color: white">
                     <a href="{% url 'MyMusic:details' album.id %}" >
                         <img src="{{ album.album_logo.url }}" alt="" style="height: 200px; width: auto">
                     </a>
